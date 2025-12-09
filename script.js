@@ -6,7 +6,7 @@ const translations = {
         // Header
         govName: 'Government of Nepal', portalName: 'Community Portal - Ghorahi',
         // Nav
-        navHome: 'Home', navAbout: 'About Us', navWork: 'Our Work', navWards: 'Wards', navComplaint: 'Complaint Box', navContact: 'Contact Us', navMenu: 'Menu',
+        navHome: 'Home', navAbout: 'About Us', navWork: 'Our Work', navWards: 'Wards', navComplaint: 'Complain', navContact: 'Contact Us', navMenu: 'Menu',
         // Home
         missionTitle: 'Our Community Mission', missionText: 'We are committed to fostering transparency, accountability, and sustainable development within Ghorahi. Through collaborative efforts, we strive to improve infrastructure and public services.',
         // Achievements
@@ -286,3 +286,4 @@ function handleMenuToggle(event) {
         openMenuModal();
     }
 }
+
