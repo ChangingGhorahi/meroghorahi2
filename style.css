@@ -30,7 +30,6 @@ body {
 body.blur-content > .top-bar,
 body.blur-content > .branding-header,
 body.blur-content > .icon-nav,
-body.blur-content > .officials-bar,
 body.blur-content > .main-content,
 body.blur-content > .site-footer {
     filter: blur(4px);
@@ -236,42 +235,6 @@ body.blur-content > .site-footer {
 /* Hide the active badge for desktop view */
 .active-badge {
     display: none;
-}
-
-/* --- Key Officials Bar (New) --- */
-.officials-bar {
-    background-color: #e9ecef;
-    padding: 8px 0;
-    color: var(--color-dark);
-    font-size: 0.9rem;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.officials-bar-inner {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: var(--spacing-md);
-}
-
-.officials-title {
-    font-weight: bold;
-    color: var(--color-dark-blue);
-}
-
-.officials-info {
-    display: flex;
-    gap: var(--spacing-lg);
-    flex-wrap: wrap;
-}
-
-.official-item {
-    padding: 0 10px;
-    border-left: 1px solid #ccc;
-}
-
-.official-item:first-child {
-    border-left: none;
 }
 
 
@@ -621,18 +584,6 @@ body.blur-content > .site-footer {
     }
     .search-box {
         width: 100%;
-    }
-    .officials-bar-inner {
-        justify-content: center;
-        text-align: center;
-    }
-    .officials-info {
-        flex-direction: column;
-        gap: 5px;
-    }
-    .official-item {
-        border-left: none;
-        padding: 0;
     }
     .icon-nav-inner {
         justify-content: space-around;
