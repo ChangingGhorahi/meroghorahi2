@@ -286,4 +286,3 @@ function handleMenuToggle(event) {
         openMenuModal();
     }
 }
-
