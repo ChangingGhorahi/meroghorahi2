@@ -7,8 +7,6 @@ const translations = {
         govName: 'Government of Nepal', portalName: 'Community Portal - Ghorahi',
         // Nav
         navHome: 'Home', navAbout: 'About Us', navWork: 'Our Work', navWards: 'Wards', navComplaint: 'Complaint Box', navContact: 'Contact Us', navMenu: 'Menu',
-        // Officials Bar
-        officialsTitle: 'Key Officials (Ghorahi):', mayor: 'Mayor:', deputyMayor: 'Deputy Mayor:', cdo: 'CDO:',
         // Home
         missionTitle: 'Our Community Mission', missionText: 'We are committed to fostering transparency, accountability, and sustainable development within Ghorahi. Through collaborative efforts, we strive to improve infrastructure and public services.',
         // Achievements
@@ -33,8 +31,6 @@ const translations = {
         govName: 'नेपाल सरकार', portalName: 'सामुदायिक पोर्टल - घोराही',
         // Nav
         navHome: 'गृहपृष्ठ', navAbout: 'हाम्रो बारेमा', navWork: 'हाम्रा कामहरू', navWards: 'वडाहरू', navComplaint: 'गुनासो पेटिका', navContact: 'सम्पर्क', navMenu: 'मेनु',
-        // Officials Bar
-        officialsTitle: 'मुख्य पदाधिकारी (घोराही):', mayor: 'नगर प्रमुख:', deputyMayor: 'उप-प्रमुख:', cdo: 'प्रमुख जिल्ला अधिकारी:',
         // Home
         missionTitle: 'हाम्रो सामुदायिक उद्देश्य', missionText: 'हामी घोराही भित्र पारदर्शिता, जवाफदेहिता र दिगो विकास प्रवर्द्धन गर्न प्रतिबद्ध छौं। सामूहिक प्रयास मार्फत हामी पूर्वाधार सुधार र सार्वजनिक सेवालाई प्रभावकारी बनाउन प्रयत्नशील छौं।',
         // Achievements
