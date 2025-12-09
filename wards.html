@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wards Directory - Ghorahi</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-left">
+                <span data-key="directory">Directory</span>
+            </div>
+            <div class="top-center">
+                <span class="emergency-label" data-key="emergency">Emergency:</span>
+                <span class="emergency-item"><i data-lucide="shield-alert" class="icon-sm"></i> <span data-key="police">Police</span>: 100</span>
+                <span class="emergency-item"><i data-lucide="ambulance" class="icon-sm"></i> <span data-key="ambulance">Ambulance</span>: 102</span>
+                <span class="emergency-item"><i data-lucide="flame" class="icon-sm"></i> <span data-key="fire">Fire</span>: 101</span>
+            </div>
+            <button id="lang-toggle" class="lang-btn">नेपाली</button>
+        </div>
+    </div>
+
+    <header class="branding-header">
+        <div class="container branding-inner">
+            <div class="logo-section">
+                <div class="logo-circle">LOGO</div>
+                <div class="org-name">
+                    <h1 data-key="govName">Government of Nepal</h1>
+                    <h2 data-key="portalName">Community Portal - Ghorahi</h2>
+                </div>
+            </div>
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search...">
+                    <i data-lucide="search" class="search-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="icon-nav">
+        <div class="container icon-nav-inner">
+            <a href="index.html" class="nav-item">
+                <i data-lucide="home"></i>
+                <span data-key="navHome">Home</span>
+            </a>
+
+            <a href="wards.html" class="nav-item active">
+                <i data-lucide="map-pin"></i>
+                <span data-key="navWards">Wards</span>
+                <span class="active-badge" aria-label="Active Page"></span>
+            </a>
+
+            <a href="https://forms.gle/depZP4VXUf9ouQNeA" target="_blank" class="nav-item">
+                <i data-lucide="file-text"></i>
+                <span data-key="navComplaint">Complaint Box</span>
+            </a>
+            
+            <a href="#" class="nav-item menu-toggle-btn" data-target="full-menu-modal">
+                <i data-lucide="menu"></i>
+                <span data-key="navMenu">Menu</span>
+            </a>
+        </div>
+    </nav>
+    
+    <section class="officials-bar">
+        <div class="container officials-bar-inner">
+            <span class="officials-title" data-key="officialsTitle">Key Officials (Ghorahi):</span>
+            <div class="officials-info">
+                <span class="official-item"><span data-key="mayor">Mayor:</span> Ram Lal Chaudhary</span>
+                <span class="official-item"><span data-key="deputyMayor">Deputy Mayor:</span> Bina Bhandari</span>
+                <span class="official-item"><span data-key="cdo">CDO:</span> Hari Prasad Sharma</span>
+            </div>
+        </div>
+    </section>
+    
+    <main class="main-content">
+        <section class="section-padding">
+            <div class="container">
+                <h3 class="section-title text-center text-blue" data-key="wardsTitle">Wards Directory</h3>
+                <p class="section-subtitle text-center" data-key="wardsSub">Select your ward to view detailed information (1-19)</p>
+
+                <div class="wards-grid" id="wards-grid-container"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="ward-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-ward-title" data-key="wardDetailsTitle">Ward Details</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4 class="ward-heading-label" data-key="wardHead">Ward Head:</h4>
+                <p id="modal-head-name" class="modal-info-text">--</p>
+                
+                <h4 class="ward-heading-label" data-key="population">Population:</h4>
+                <p id="modal-population" class="modal-info-text">--</p>
+                
+                <h4 class="ward-heading-label" data-key="area">Area:</h4>
+                <p id="modal-area" class="modal-info-text">--</p>
+                
+                <h4 class="ward-heading-label" data-key="keyLocations">Key Locations:</h4>
+                <p id="modal-locations" class="modal-info-text">--</p>
+
+                <p class="modal-note" data-key="modalNote">Contact the ward office directly for service inquiries.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer id="contact-footer" class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-key="contact">Contact Information</h3>
+                    <div class="contact-list">
+                        <div class="contact-item"><i data-lucide="map-pin" class="icon-blue"></i> <div><div data-key="address">Community Portal Office</div><div class="text-gray" data-key="addressLine">Ghorahi, Dang, Nepal</div></div></div>
+                        <div class="contact-item"><i data-lucide="phone" class="icon-blue"></i> <div><span data-key="phone">Phone</span>: +977-82-410101</div></div>
+                        <div class="contact-item"><i data-lucide="mail" class="icon-blue"></i> <div><span data-key="email">Email</span>: info@ghorahiportal.gov.np</div></div>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-key="links">Important Links</h3>
+                    <ul class="footer-links" id="links-list">
+                        </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-key="hours">Office Hours</h3>
+                    <p><span data-key="hoursInfo">Sunday - Friday</span>: <span data-key="hoursTime">10:00 AM - 5:00 PM</span></p>
+                    <p class="closed-notice" data-key="closed">Closed on Saturdays and Public Holidays</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="text-center text-gray"><span data-key="lastUpdated">Last Updated</span>: <span id="date-display">December 8, 2025</span></div>
+                <div class="text-center text-gray" data-key="copyright">© 2025 Ghorahi Community Portal. All rights reserved.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="full-menu-modal" class="menu-modal-overlay">
+        <div class="menu-modal-content">
+            <button class="menu-modal-close" aria-label="Close Menu">&times;</button>
+            <h3 class="menu-modal-heading" data-key="navMenu">Menu</h3>
+
+            <a href="index.html" class="menu-modal-item" data-key="navHome">Home</a>
+            <a href="wards.html" class="menu-modal-item" data-key="navWards">Wards</a>
+            <a href="https://forms.gle/depZP4VXUf9ouQNeA" target="_blank" class="menu-modal-item" data-key="navComplaint">Complaint Box</a>
+
+            <div class="menu-divider"></div>
+
+            <h4 class="menu-modal-subheading">Citizen Services</h4>
+            <a href="https://forms.gle/ntBdKHHWKJvZh5r28" target="_blank" class="menu-modal-item">Form for Volunteering</a>
+            <a href="https://forms.gle/wxXxAdK1FpYUbxv27" target="_blank" class="menu-modal-item">Question Your Mayor</a>
+
+            <div class="menu-divider"></div>
+            
+            <h4 class="menu-modal-subheading">Contact Information</h4>
+            <a href="#contact-footer" class="menu-modal-item">Main Contact Details</a>
+            <a href="#officials-contact" class="menu-modal-item">Key Officials Contact</a>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
