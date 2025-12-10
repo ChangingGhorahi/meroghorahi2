@@ -20,7 +20,10 @@
                 <span class="emergency-item"><i data-lucide="ambulance" class="icon-sm"></i> <span data-key="ambulance">Ambulance</span>: 102</span>
                 <span class="emergency-item"><i data-lucide="flame" class="icon-sm"></i> <span data-key="fire">Fire</span>: 101</span>
             </div>
-            <button id="lang-toggle" class="lang-btn">नेपाली</button>
+            <div class="lang-selector-group">
+                <span data-key="langPrefix">lan/भाषा:</span>
+                <button id="lang-toggle" class="lang-btn">नेपाली</button>
+            </div>
         </div>
     </div>
 
@@ -55,9 +58,9 @@
                 <span class="active-badge" aria-label="Active Page"></span>
             </a>
 
-            <a href="https://forms.gle/depZP4VXUf9ouQNeA" target="_blank" class="nav-item">
+            <a href="https://near.tl/sm/6w0eBvJD9" target="_blank" class="nav-item">
                 <i data-lucide="file-text"></i>
-                <span data-key="navComplaint">Complain</span>
+                <span data-key="navComplaint">Complaint Box</span>
             </a>
             
             <a href="#" class="nav-item menu-toggle-btn" data-target="full-menu-modal">
@@ -67,42 +70,17 @@
         </div>
     </nav>
     
-
-    
     <main class="main-content">
         <section class="section-padding">
-            <div class="container">
-                <h3 class="section-title text-center text-blue" data-key="wardsTitle">Wards Directory</h3>
-                <p class="section-subtitle text-center" data-key="wardsSub">Select your ward to view detailed information (1-19)</p>
+            <div class="container text-center">
+                <h3 class="section-title text-blue" data-key="wardsTitle">Wards Directory</h3>
+                <p class="section-subtitle" data-key="wardsSub">Select your ward to view detailed information (1-19)</p>
 
-                <div class="wards-grid" id="wards-grid-container"></div>
+                <div id="wards-grid-container" class="wards-grid">
+                    </div>
             </div>
         </section>
     </main>
-
-    <div id="ward-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-ward-title" data-key="wardDetailsTitle">Ward Details</h2>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h4 class="ward-heading-label" data-key="wardHead">Ward Head:</h4>
-                <p id="modal-head-name" class="modal-info-text">--</p>
-                
-                <h4 class="ward-heading-label" data-key="population">Population:</h4>
-                <p id="modal-population" class="modal-info-text">--</p>
-                
-                <h4 class="ward-heading-label" data-key="area">Area:</h4>
-                <p id="modal-area" class="modal-info-text">--</p>
-                
-                <h4 class="ward-heading-label" data-key="keyLocations">Key Locations:</h4>
-                <p id="modal-locations" class="modal-info-text">--</p>
-
-                <p class="modal-note" data-key="modalNote">Contact the ward office directly for service inquiries.</p>
-            </div>
-        </div>
-    </div>
 
     <footer id="contact-footer" class="site-footer">
         <div class="container footer-content">
@@ -143,22 +121,75 @@
 
             <a href="index.html" class="menu-modal-item" data-key="navHome">Home</a>
             <a href="wards.html" class="menu-modal-item" data-key="navWards">Wards</a>
-            <a href="https://forms.gle/depZP4VXUf9ouQNeA" target="_blank" class="menu-modal-item" data-key="navComplaint">Complaint Box</a>
+            <a href="#" class="menu-modal-item" data-key="navVideos">Videos</a>
+            <a href="#" class="menu-modal-item" data-key="navImages">Images</a>
+            <a href="#" class="menu-modal-item" data-key="navLifeline">Local Lifeline</a>
 
             <div class="menu-divider"></div>
 
-            <h4 class="menu-modal-subheading">Citizen Services</h4>
-            <a href="https://forms.gle/ntBdKHHWKJvZh5r28" target="_blank" class="menu-modal-item">Form for Volunteering</a>
-            <a href="https://forms.gle/wxXxAdK1FpYUbxv27" target="_blank" class="menu-modal-item">Question Your Mayor</a>
+            <h4 class="menu-modal-subheading" data-key="menuRights">Your Rights</h4>
+            <a href="https://forms.gle/wxXxAdK1FpYUbxv27" target="_blank" class="menu-modal-item" data-key="menuAskMayor">Ask Your Mayor</a>
+            <a href="https://near.tl/sm/6w0eBvJD9" target="_blank" class="menu-modal-item" data-key="navComplaint">Complain</a>            <a href="#" class="menu-modal-item" data-key="menuComplainProgress">Complain Progress</a>
+            <a href="https://forms.gle/ntBdKHHWKJvZh5r28" target="_blank" class="menu-modal-item" data-key="menuJoinUs">Join Us</a>
 
             <div class="menu-divider"></div>
-            
-            <h4 class="menu-modal-subheading">Contact Information</h4>
-            <a href="#contact-footer" class="menu-modal-item">Main Contact Details</a>
-            <a href="#officials-contact" class="menu-modal-item">Key Officials Contact</a>
+
+            <h4 class="menu-modal-subheading" data-key="menuMoney">Your Money</h4>
+            <a href="#tax-calculator" class="menu-modal-item menu-calculator-btn" data-key="menuTaxCalc">Tax Calculator</a>
+            <a href="#" class="menu-modal-item" data-key="menuDonate">Donate Us</a>
+        </div>
+    </div>
+
+    <div id="ward-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-ward-title" data-key="wardDetailsTitle">Ward Details </h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-info-item">
+                    <span data-key="wardHead">Ward Head:</span>
+                    <span id="modal-head-name" class="modal-info-text"></span>
+                </div>
+                <div class="modal-info-item">
+                    <span data-key="population">Population:</span>
+                    <span id="modal-population" class="modal-info-text"></span>
+                </div>
+                <div class="modal-info-item">
+                    <span data-key="area">Area:</span>
+                    <span id="modal-area" class="modal-info-text"></span>
+                </div>
+                <div class="modal-info-item full-width">
+                    <span data-key="keyLocations">Key Locations:</span>
+                    <p id="modal-locations" class="modal-info-text"></p>
+                </div>
+                <p class="modal-note" data-key="modalNote">Contact the ward office directly for service inquiries.</p>
+            </div>
         </div>
     </div>
     
+    <div id="tax-calculator-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 data-key="taxCalcTitle">Indirect Tax Calculator</h2>
+                <button class="close-btn tax-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p data-key="taxCalcInfo">Enter your total Yearly expenditure (excluding rent, savings, and investment) to estimate the amount of indirect tax (like VAT) you pay in Nepal.</p>
+                
+                <label for="expenditure-input" data-key="expenditureLabel">Total Yearly Expenditure (NPR):</label>
+                <input type="number" id="expenditure-input" placeholder="e.g., 50000" min="0" required>
+                
+                <button id="calculate-tax-btn" class="calc-btn" data-key="calculateBtn">Calculate Tax</button>
+                
+                <div class="tax-result" style="margin-top: 15px;">
+                    <h4 data-key="taxPaidLabel">Estimated Indirect Tax Paid:</h4>
+                    <p id="tax-result-output" class="modal-info-text">NPR 0</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
