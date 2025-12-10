@@ -1,20 +1,31 @@
-// --- FULL TRANSLATION DICTIONARY ---
+// --- FULL TRANSLATION DICTIONARY (Updated) ---
 const translations = {
     en: {
         // Top Bar
         directory: 'Directory', emergency: 'Emergency:', police: 'Police', ambulance: 'Ambulance', fire: 'Fire',
+        langPrefix: 'lan/भाषा:', // ADDED: Language prefix
         // Header
         govName: 'Government of Nepal', portalName: 'Community Portal - Ghorahi',
         // Nav
-        navHome: 'Home', navAbout: 'About Us', navWork: 'Our Work', navWards: 'Wards', navComplaint: 'Complain', navContact: 'Contact Us', navMenu: 'Menu',
+        navHome: 'Home', navWards: 'Wards', navComplaint: 'Complain', navMenu: 'Menu',
+        navVideos: 'Videos', navImages: 'Images', navLifeline: 'Local Lifeline',
+        // Menu Sections & Items
+        menuRights: 'Your Rights', menuAskMayor: 'Ask Your Mayor', menuComplainProgress: 'Complain Progress', menuJoinUs: 'Join Us',
+        menuMoney: 'Your Money', menuTaxCalc: 'Tax Calculator', menuDonate: 'Donate Us',
         // Home
         missionTitle: 'Our Community Mission', missionText: 'We are committed to fostering transparency, accountability, and sustainable development within Ghorahi. Through collaborative efforts, we strive to improve infrastructure and public services.',
         // Achievements
         achievementsTitle: 'Our Achievements', achievementsSub: 'Recent projects and initiatives transforming our community',
         // Wards Page
         wardsTitle: 'Wards Directory', wardsSub: 'Select your ward to view detailed information (1-19)',
-        // Modal Translations
+        // Ward Modal Translations
         wardDetailsTitle: 'Ward Details', wardHead: 'Ward Head:', population: 'Population:', area: 'Area:', keyLocations: 'Key Locations:', modalNote: 'Contact the ward office directly for service inquiries.',
+        // Tax Calculator Modal Translations
+        taxCalcTitle: 'Indirect Tax Calculator', 
+        taxCalcInfo: 'Enter your total Yearly expenditure (excluding rent, savings, and investment) to estimate the amount of indirect tax (like VAT) you pay in Nepal.',
+        expenditureLabel: 'Total Yearly Expenditure (NPR):',
+        calculateBtn: 'Calculate Tax',
+        taxPaidLabel: 'Estimated Indirect Tax Paid:',
         // Footer
         contact: 'Contact Information', address: 'Community Portal Office', addressLine: 'Ghorahi, Dang, Nepal', phone: 'Phone', email: 'Email',
         links: 'Important Links',
@@ -27,18 +38,29 @@ const translations = {
     ne: {
         // Top Bar
         directory: 'निर्देशिका', emergency: 'आकस्मिक सेवा:', police: 'प्रहरी', ambulance: 'एम्बुलेन्स', fire: 'दमकल',
+        langPrefix: 'lan/भाषा:', // ADDED: Language prefix
         // Header
         govName: 'नेपाल सरकार', portalName: 'सामुदायिक पोर्टल - घोराही',
         // Nav
-        navHome: 'गृहपृष्ठ', navAbout: 'हाम्रो बारेमा', navWork: 'हाम्रा कामहरू', navWards: 'वडाहरू', navComplaint: 'गुनासो पेटिका', navContact: 'सम्पर्क', navMenu: 'मेनु',
+        navHome: 'गृहपृष्ठ', navWards: 'वडाहरू', navComplaint: 'गुनासो', navMenu: 'मेनु',
+        navVideos: 'भिडियोहरू', navImages: 'तस्विरहरू', navLifeline: 'स्थानीय हेल्पलाइन',
+        // Menu Sections & Items
+        menuRights: 'तपाईंका अधिकारहरू', menuAskMayor: 'मेयरलाई सोध्नुहोस्', menuComplainProgress: 'गुनासो प्रगति', menuJoinUs: 'हामीसँग जोडिनुहोस्',
+        menuMoney: 'तपाईंको पैसा', menuTaxCalc: 'कर क्याल्कुलेटर', menuDonate: 'हामीलाई दान गर्नुहोस्',
         // Home
         missionTitle: 'हाम्रो सामुदायिक उद्देश्य', missionText: 'हामी घोराही भित्र पारदर्शिता, जवाफदेहिता र दिगो विकास प्रवर्द्धन गर्न प्रतिबद्ध छौं। सामूहिक प्रयास मार्फत हामी पूर्वाधार सुधार र सार्वजनिक सेवालाई प्रभावकारी बनाउन प्रयत्नशील छौं।',
         // Achievements
         achievementsTitle: 'हाम्रा उपलब्धिहरू', achievementsSub: 'हाम्रो समुदायलाई परिवर्तन गर्ने हालैका परियोजनाहरू',
         // Wards Page
         wardsTitle: 'वडा निर्देशिका', wardsSub: 'विस्तृत जानकारीको लागि आफ्नो वडा छान्नुहोस् (१-१९)',
-        // Modal Translations
+        // Ward Modal Translations
         wardDetailsTitle: 'वडाको विवरण', wardHead: 'वडा अध्यक्ष:', population: 'जनसंख्या:', area: 'क्षेत्रफल:', keyLocations: 'मुख्य स्थानहरू:', modalNote: 'सेवा सम्बन्धी सोधपुछका लागि वडा कार्यालयमा सिधै सम्पर्क गर्नुहोस्।',
+        // Tax Calculator Modal Translations
+        taxCalcTitle: 'अप्रत्यक्ष कर क्याल्कुलेटर',
+        taxCalcInfo: 'नेपालमा तपाईंले तिर्नुभएको अप्रत्यक्ष कर (जस्तै VAT) को अनुमान लगाउन कुल मासिक खर्च (भाडा, बचत, र लगानी बाहेक) प्रविष्ट गर्नुहोस्।',
+        expenditureLabel: 'कुल मासिक खर्च (NPR):',
+        calculateBtn: 'कर गणना गर्नुहोस्',
+        taxPaidLabel: 'अनुमानित अप्रत्यक्ष कर भुक्तानी:',
         // Footer
         contact: 'सम्पर्क जानकारी', address: 'सामुदायिक पोर्टल कार्यालय', addressLine: 'घोराही, दाङ, नेपाल', phone: 'फोन', email: 'इमेल',
         links: 'महत्त्वपूर्ण लिङ्कहरू',
@@ -74,6 +96,51 @@ const wardData = {
 };
 
 
+// --- 1. TAX CALCULATOR FUNCTIONS ---
+// Uses a conservative average indirect tax rate of 7.0% on total expenditure 
+// (excluding rent/savings) to account for VAT exemptions on staples.
+const ESTIMATED_INDIRECT_TAX_RATE = 0.070; 
+
+function calculateIndirectTax() {
+    const expenditureInput = document.getElementById('expenditure-input');
+    const resultOutput = document.getElementById('tax-result-output');
+    const expenditure = parseFloat(expenditureInput.value);
+
+    if (isNaN(expenditure) || expenditure < 0) {
+        resultOutput.textContent = currentLang === 'en' ? "Please enter a valid amount." : "कृपया वैध रकम प्रविष्ट गर्नुहोस्।";
+        return;
+    }
+
+    const estimatedTax = expenditure * ESTIMATED_INDIRECT_TAX_RATE;
+    
+    // Format the output with commas
+    resultOutput.textContent = `NPR ${estimatedTax.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`;
+}
+
+function openTaxModal() {
+    if (taxModal) {
+        taxModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        document.body.classList.add('modal-open'); // Use a general class for modal management
+    }
+}
+
+function closeTaxModal() {
+    if (taxModal) {
+        taxModal.style.display = 'none';
+        
+        // Reset the calculator input and output when closing
+        const expenditureInput = document.getElementById('expenditure-input');
+        const resultOutput = document.getElementById('tax-result-output');
+        if (expenditureInput) expenditureInput.value = '';
+        if (resultOutput) resultOutput.textContent = 'NPR 0';
+        
+        // Restore scroll and blur only if NO other modal/menu is open
+        restoreBodyState();
+    }
+}
+
+
 // --- STATE & ELEMENTS ---
 let currentLang = localStorage.getItem('siteLang') || 'en'; 
 const langBtn = document.getElementById('lang-toggle');
@@ -82,6 +149,28 @@ const wardsContainer = document.getElementById('wards-grid-container');
 // Ward Modal Elements
 const wardModal = document.getElementById('ward-modal');
 const modalCloseBtn = wardModal ? wardModal.querySelector('.close-btn') : null;
+
+// Tax Calculator Modal Elements
+const taxModal = document.getElementById('tax-calculator-modal');
+const taxCloseBtn = document.querySelector('.tax-close-btn');
+const taxCalcBtn = document.getElementById('calculate-tax-btn');
+
+const menuModalOverlay = document.getElementById('full-menu-modal');
+
+
+// --- UTILITY FUNCTION FOR BODY STATE ---
+function isAnyModalOpen() {
+    const isWardOpen = wardModal && wardModal.style.display === 'flex';
+    const isTaxOpen = taxModal && taxModal.style.display === 'flex';
+    const isMenuOpen = menuModalOverlay && menuModalOverlay.classList.contains('is-active');
+    return isWardOpen || isTaxOpen || isMenuOpen;
+}
+
+function restoreBodyState() {
+    if (!isAnyModalOpen()) {
+        document.body.classList.remove('modal-open');
+    }
+}
 
 
 // --- INITIALIZE & EVENT LISTENERS ---
@@ -102,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         wardsContainer.addEventListener('click', handleWardClick);
     }
     if (modalCloseBtn) {
-        modalCloseBtn.addEventListener('click', closeModal);
+        modalCloseBtn.addEventListener('click', closeModal); // Closes Ward Modal
     }
     // Close Ward Modal when clicking the dark backdrop
     if (wardModal) {
@@ -112,6 +201,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    
+    // --- Tax Calculator Modal Listeners ---
+    if (taxModal) {
+        // Open the Tax Calculator Modal
+        document.querySelectorAll('.menu-calculator-btn').forEach(btn => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                closeMenuModal(); // Close the main menu first
+                openTaxModal();
+            });
+        });
+
+        // Close Tax Calculator Modal
+        if (taxCloseBtn) {
+            taxCloseBtn.addEventListener('click', closeTaxModal);
+        }
+        
+        // Close Tax Modal when clicking the dark backdrop
+        window.addEventListener('click', (event) => {
+            if (event.target === taxModal) {
+                closeTaxModal();
+            }
+        });
+
+        // Calculate Tax Button
+        if (taxCalcBtn) {
+            taxCalcBtn.addEventListener('click', calculateIndirectTax);
+        }
+    }
+
 
     // ----------------------------------------------------------------
     // --- Full-Screen Menu Modal Listeners ---
@@ -122,8 +241,6 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', handleMenuToggle);
     });
 
-    const menuModalOverlay = document.getElementById('full-menu-modal');
-
     if (menuModalOverlay) {
         // 2. Close on 'X' Button Click
         const closeBtn = menuModalOverlay.querySelector('.menu-modal-close');
@@ -131,15 +248,16 @@ document.addEventListener('DOMContentLoaded', () => {
             closeBtn.addEventListener('click', closeMenuModal);
         }
 
-        // 3. Close on clicking the backdrop (outside the content panel)
+        // 3. Close on clicking the backdrop (the overlay div outside the sliding content)
         menuModalOverlay.addEventListener('click', (event) => {
-            if (event.target === menuModalOverlay) {
+            // Check if the click occurred on the overlay itself, not the content panel
+            if (event.target.classList.contains('menu-modal-overlay')) {
                 closeMenuModal();
             }
         });
         
-        // 4. Close on clicking any menu item (and navigating)
-        document.querySelectorAll('.menu-modal-item').forEach(item => {
+        // 4. Close on clicking any menu item (and navigating, but excluding the Tax Calculator which opens a new modal)
+        document.querySelectorAll('.menu-modal-item:not(.menu-calculator-btn)').forEach(item => {
             item.addEventListener('click', closeMenuModal);
         });
     }
@@ -152,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// --- 1. GENERATE WARDS (If on Wards Page) ---
+// --- 2. GENERATE WARDS (If on Wards Page) ---
 function generateWards(wardLabel) {
     if (!wardsContainer) return;
 
@@ -172,7 +290,7 @@ function generateWards(wardLabel) {
     }
 }
 
-// --- 2. WARD MODAL FUNCTIONS ---
+// --- 3. WARD MODAL FUNCTIONS ---
 function openModal(wardId) {
     if (!wardModal) return;
 
@@ -189,13 +307,14 @@ function openModal(wardId) {
     
     // Set display to show modal
     wardModal.style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    document.body.classList.add('modal-open'); // Apply general modal class
 }
 
 function closeModal() {
     if (wardModal) {
         wardModal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Restore background scrolling
+        // Restore scroll and blur only if NO other modal/menu is open
+        restoreBodyState();
     }
 }
 
@@ -210,7 +329,7 @@ function handleWardClick(event) {
 }
 
 
-// --- 3. RENDER TRANSLATION ---
+// --- 4. RENDER TRANSLATION ---
 function renderContent() {
     const t = translations[currentLang];
 
@@ -253,36 +372,36 @@ function renderContent() {
     generateWards(t.navWards); 
 }
 
-// --- 4. FULL-SCREEN MENU MODAL FUNCTIONS ---
+// --- 5. SIDEBAR MENU MODAL FUNCTIONS ---
 
 function openMenuModal() {
-    const modal = document.getElementById('full-menu-modal');
-    // Guard clause: do nothing if the modal element isn't present
-    if (!modal) return;
+    if (!menuModalOverlay) return;
     
-    // Check if the ward modal is open, if so, close it first
+    // Close any other open modals before opening the menu
     if (wardModal && wardModal.style.display === 'flex') {
         closeModal();
     }
+    if (taxModal && taxModal.style.display === 'flex') {
+        closeTaxModal();
+    }
     
-    modal.classList.add('is-active');
-    document.body.classList.add('blur-content'); // Add class to body to blur content
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    // Use the 'is-active' class to control the sidebar slide and background blur
+    menuModalOverlay.classList.add('is-active');
+    document.body.classList.add('modal-open');
 }
 
 function closeMenuModal() {
-    const modal = document.getElementById('full-menu-modal');
-    if (modal) {
-        modal.classList.remove('is-active');
+    if (menuModalOverlay) {
+        menuModalOverlay.classList.remove('is-active');
     }
-    document.body.classList.remove('blur-content'); // Remove class to unblur content
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    // Restore scroll and blur only if NO other modal is open
+    restoreBodyState(); 
 }
 
 function handleMenuToggle(event) {
     const targetId = event.currentTarget.getAttribute('data-target');
     if (targetId === 'full-menu-modal') {
-        event.preventDefault(); // Stop the default anchor behavior
+        event.preventDefault(); 
         openMenuModal();
     }
 }
