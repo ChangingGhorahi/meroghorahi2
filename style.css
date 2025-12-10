@@ -742,3 +742,44 @@ a:hover {
         min-width: 200px;
     }
 }
+
+/* Styling for the dropdown parent item */
+.menu-modal-item.has-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-modal-item.has-dropdown .dropdown-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+}
+
+/* Rotate icon when dropdown is open */
+.menu-modal-item.has-dropdown.is-open .dropdown-icon {
+    transform: rotate(180deg);
+}
+
+/* Container for the dropdown links - initially hidden */
+.menu-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: #f8f8f8; /* Slight background for distinction */
+}
+
+/* Style for the individual dropdown links */
+.menu-dropdown-item {
+    display: block;
+    font-size: 0.95rem;
+    color: #555;
+    padding: 10px 10px 10px 30px; /* Indent the sub-items */
+    border-bottom: 1px solid #eee;
+}
+
+.menu-dropdown-item:hover {
+    background-color: #eaf5ff;
+    color: #007bff;
+}
