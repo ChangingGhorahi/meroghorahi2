@@ -13,7 +13,7 @@ const translations = {
         menuRights: 'Your Rights', menuAskMayor: 'Ask Your Mayor', menuComplainProgress: 'Complain Progress', menuJoinUs: 'Join Us',
         menuMoney: 'Your Money', menuTaxCalc: 'Tax Calculator', menuDonate: 'Donate Us',
         // Home
-        missionTitle: 'Our Community Mission', missionText: 'We are committed to fostering transparency, accountability, and sustainable development within Ghorahi. Through collaborative efforts, we strive to improve infrastructure and public services.',
+        missionTitle: 'Our Core Mission', missionText: "We are here to make sure Ghorahi's government is listening and acting. This website is your direct line. We help you report problems you see in the city and make sure your local offices are held responsible for fixing them. We turn your voice into real change, making Ghorahi better, together.",
         // Achievements
         achievementsTitle: 'Our Achievements', achievementsSub: 'Recent projects and initiatives transforming our community',
         // Wards Page
@@ -48,7 +48,7 @@ const translations = {
         menuRights: 'तपाईंका अधिकारहरू', menuAskMayor: 'मेयरलाई सोध्नुहोस्', menuComplainProgress: 'गुनासो प्रगति', menuJoinUs: 'हामीसँग जोडिनुहोस्',
         menuMoney: 'तपाईंको पैसा', menuTaxCalc: 'कर क्याल्कुलेटर', menuDonate: 'हामीलाई दान गर्नुहोस्',
         // Home
-        missionTitle: 'हाम्रो सामुदायिक उद्देश्य', missionText: 'हामी घोराही भित्र पारदर्शिता, जवाफदेहिता र दिगो विकास प्रवर्द्धन गर्न प्रतिबद्ध छौं। सामूहिक प्रयास मार्फत हामी पूर्वाधार सुधार र सार्वजनिक सेवालाई प्रभावकारी बनाउन प्रयत्नशील छौं।',
+        missionTitle: 'हाम्रो मुख्य उद्देश्य', missionText: 'घोराहीको सरकारले सुनिरहेको र काम गरिरहेको छ भनी सुनिश्चित गर्न हामी यहाँ छौं। यो वेबसाइट तपाईंको प्रत्यक्ष लाइन हो। हामी तपाईंलाई शहरमा देख्ने समस्याहरू रिपोर्ट गर्न मद्दत गर्छौं र तपाईंको स्थानीय कार्यालयहरूलाई ती समस्याहरू समाधान गर्न जिम्मेवार बनाउँछौं भनी सुनिश्चित गर्छौं। हामी तपाईंको आवाजलाई वास्तविक परिवर्तनमा परिणत गर्छौं, घोराहीलाई राम्रो बनाउँछौं।',
         // Achievements
         achievementsTitle: 'हाम्रा उपलब्धिहरू', achievementsSub: 'हाम्रो समुदायलाई परिवर्तन गर्ने हालैका परियोजनाहरू',
         // Wards Page
@@ -256,17 +256,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // 4. Close on clicking any menu item (and navigating, but excluding the Tax Calculator which opens a new modal)
-        document.querySelectorAll('.menu-modal-item:not(.menu-calculator-btn)').forEach(item => {
-            item.addEventListener('click', closeMenuModal);
-        });
+        // **Old menu item close listener was removed/superseded here**
     }
     // ----------------------------------------------------------------
 
-    // Re-run Lucide to render all icons
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
+    setupVideosDropdown();
+    
+    // **Calling the fixed setup function here**
+    setupMenuLinkClosing(); 
+    
+    // Rerun icon creation to ensure the new chevron-down icon is rendered
+    lucide.createIcons(); 
 });
 
 
@@ -404,4 +404,67 @@ function handleMenuToggle(event) {
         event.preventDefault(); 
         openMenuModal();
     }
+}
+
+/* --- New Dropdown Menu Toggle Function --- */
+
+function setupVideosDropdown() {
+    const toggleButton = document.getElementById('videos-menu-toggle');
+    const dropdownContent = document.getElementById('videos-dropdown');
+
+    if (toggleButton && dropdownContent) {
+        toggleButton.addEventListener('click', () => {
+            // Toggle the 'is-open' class on the button
+            toggleButton.classList.toggle('is-open');
+
+            // Toggle the height of the dropdown content
+            if (dropdownContent.style.maxHeight) {
+                dropdownContent.style.maxHeight = null; // Collapse
+            } else {
+                // Set max-height to scroll height to expand fully (CSS transition handles smooth motion)
+                dropdownContent.style.maxHeight = dropdownContent.scrollHeight + "px";
+            }
+        });
+    }
+}
+
+
+// --- Fixed Function: Fix Menu Closing on Link Click ---
+
+function setupMenuLinkClosing() {
+    const menuModal = document.getElementById('full-menu-modal');
+    
+    // **FIXED SELECTION LOGIC:** Select only menu items that are *not* the parent dropdown or the tax button, 
+    // AND all dropdown sub-items. This prevents the Videos header from closing the menu.
+    const linksToCloseMenu = menuModal.querySelectorAll(
+        '.menu-modal-item:not(.has-dropdown):not(.menu-calculator-btn), .menu-dropdown-item'
+    );
+    
+    const closeButton = menuModal.querySelector('.menu-modal-close');
+
+    function closeMenu() {
+        menuModal.classList.remove('is-active');
+        document.body.classList.remove('modal-open');
+    }
+    
+    // Add event listener to the main close button (just in case)
+    if (closeButton) {
+        closeButton.addEventListener('click', closeMenu);
+    }
+    
+    // Add event listener to all links that should cause the menu to close
+    linksToCloseMenu.forEach(link => {
+        link.addEventListener('click', () => {
+            // Introduce a small delay to allow the navigation/link to be processed first
+            setTimeout(closeMenu, 100); 
+        });
+    });
+
+    // Handle clicks outside the menu content to close it
+    menuModal.addEventListener('click', (event) => {
+        // Check if the click happened directly on the overlay, not inside the content
+        if (event.target === menuModal) {
+            closeMenu();
+        }
+    });
 }
