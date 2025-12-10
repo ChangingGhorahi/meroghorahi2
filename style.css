@@ -1,17 +1,4 @@
 /* --- Base Reset & General Styles --- */
-:root {
-    --color-primary-blue: #007bff;
-    --color-dark-blue: #0056b3;
-    --color-light-gray: #f8f9fa;
-    --color-gray: #6c757d;
-    --color-dark: #343a40;
-    --color-white: #ffffff;
-    --color-danger: #dc3545;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 32px;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -20,59 +7,56 @@
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #333;
     line-height: 1.6;
-    color: var(--color-dark);
-    background-color: var(--color-light-gray);
-    transition: filter 0.3s ease; /* Transition for the blur effect */
+    background-color: #f4f4f9;
+    transition: filter 0.3s ease-out, margin-right 0.3s ease-out; /* Transition for the menu shift */
 }
 
-/* Blur effect applied when a modal is open */
-body.blur-content > .top-bar,
-body.blur-content > .branding-header,
-body.blur-content > .icon-nav,
-body.blur-content > .main-content,
-body.blur-content > .site-footer {
+a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+/* --- Menu/Modal Body State Management --- */
+/* Class applied when any modal (Ward, Tax) or the menu is open */
+.modal-open {
+    overflow: hidden; /* Prevent background scrolling */
+}
+
+/* Blur effect applied to non-modal elements when a modal/menu is open */
+.modal-open > *:not(.modal-overlay):not(.menu-modal-overlay) {
     filter: blur(4px);
-    pointer-events: none; /* Disables interaction with blurred background */
+    pointer-events: none; /* Disable interaction with background elements */
 }
 
 /* Utility Classes */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--spacing-md);
-}
-
-.section-padding {
-    padding: var(--spacing-lg) 0;
-}
-
+.text-blue { color: #007bff; }
+.text-gray { color: #6c757d; }
+.bg-white { background-color: #fff; }
+.section-padding { padding: 30px 0; }
 .text-center { text-align: center; }
-.text-blue { color: var(--color-primary-blue); }
-.text-gray { color: var(--color-gray); }
+.full-width { width: 100%; }
+.icon-blue { color: #007bff; }
+.icon-sm { width: 18px; height: 18px; vertical-align: middle; }
 
-.section-title {
-    font-size: 2rem;
-    margin-bottom: var(--spacing-sm);
-    font-weight: 700;
-}
-
-.section-subtitle {
-    font-size: 1.1rem;
-    color: var(--color-gray);
-    margin-bottom: var(--spacing-lg);
-}
-
-.bg-white { background-color: var(--color-white); }
-.icon-sm { width: 16px; height: 16px; vertical-align: middle; margin-right: 4px; }
-.icon-blue { width: 20px; height: 20px; color: var(--color-primary-blue); margin-right: 10px; }
-
-/* --- Top Bar (Emergency & Language) --- */
+/* --- Top Bar --- */
 .top-bar {
-    background-color: var(--color-dark-blue);
-    color: var(--color-white);
-    font-size: 0.85rem;
-    padding: 6px 0;
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 0;
+    font-size: 0.8rem;
 }
 
 .top-bar-inner {
@@ -81,41 +65,44 @@ body.blur-content > .site-footer {
     align-items: center;
 }
 
-.top-center {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+.top-left, .top-center {
+    display: none; /* Hide on mobile by default */
 }
 
-.emergency-label {
-    font-weight: bold;
-    color: #ffc107; /* Highlight for emergency */
-}
-
-.emergency-item {
+.lang-selector-group {
     display: flex;
     align-items: center;
+    gap: 5px;
+    margin-left: auto;
+}
+
+.lang-selector-group span {
+    font-weight: 500;
+    color: #fff;
+    font-size: 0.9rem;
 }
 
 .lang-btn {
-    background: none;
-    color: var(--color-white);
-    border: 1px solid var(--color-white);
-    padding: 4px 10px;
-    cursor: pointer;
+    background-color: #fff;
+    color: #007bff;
+    border: none;
+    padding: 4px 8px;
     border-radius: 4px;
+    cursor: pointer;
     font-size: 0.8rem;
-    transition: background-color 0.2s;
+    font-weight: bold;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .lang-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #e2e6ea;
 }
+
 
 /* --- Branding Header --- */
 .branding-header {
-    background-color: var(--color-white);
-    padding: var(--spacing-md) 0;
+    background-color: #fff;
+    padding: 15px 0;
     border-bottom: 1px solid #ddd;
 }
 
@@ -123,257 +110,304 @@ body.blur-content > .site-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: var(--spacing-lg);
+    flex-wrap: wrap;
 }
 
 .logo-section {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .logo-circle {
-    width: 60px;
-    height: 60px;
-    background-color: var(--color-primary-blue);
-    color: var(--color-white);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    background-color: #007bff;
+    color: #fff;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     font-weight: bold;
-    font-size: 0.75rem;
-    margin-right: var(--spacing-md);
+    font-size: 0.8rem;
 }
 
 .org-name h1 {
-    font-size: 1.25rem;
-    color: var(--color-dark-blue);
-    font-weight: 700;
-    line-height: 1;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
 }
 
 .org-name h2 {
-    font-size: 1rem;
-    color: var(--color-gray);
-    font-weight: 500;
-    line-height: 1;
+    font-size: 0.75rem;
+    color: #6c757d;
+    font-weight: normal;
 }
 
-/* Search Box */
 .search-section {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-end;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .search-box {
-    position: relative;
-    width: 300px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #f8f9fa;
 }
 
 .search-box input {
-    width: 100%;
-    padding: 8px 35px 8px 15px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    font-size: 1rem;
-    background-color: var(--color-light-gray);
+    border: none;
+    flex-grow: 1;
+    padding: 5px;
+    background-color: transparent;
+    font-size: 0.9rem;
+}
+
+.search-box input:focus {
+    outline: none;
 }
 
 .search-icon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    color: var(--color-gray);
-    cursor: pointer;
+    color: #6c757d;
 }
 
-
-/* --- Icon Navigation --- */
+/* --- Navigation Bar (Icon Bar) --- */
 .icon-nav {
-    background-color: var(--color-white);
-    border-bottom: 2px solid var(--color-primary-blue);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    border-bottom: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .icon-nav-inner {
     display: flex;
-    justify-content: flex-start;
-    gap: var(--spacing-lg);
+    justify-content: space-around;
+    padding: 10px 0;
 }
 
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;
-    color: var(--color-dark);
-    padding: 10px 15px;
+    color: #333;
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 5px 0;
     position: relative;
-    transition: color 0.2s, background-color 0.2s;
+    flex-basis: 25%; /* Ensure even spacing for 4 items */
 }
 
 .nav-item i {
-    width: 24px;
-    height: 24px;
-    margin-bottom: 4px;
-}
-
-.nav-item:hover {
-    color: var(--color-dark-blue);
+    width: 20px;
+    height: 20px;
+    margin-bottom: 2px;
 }
 
 .nav-item.active {
-    color: var(--color-primary-blue);
-    border-bottom: 3px solid var(--color-primary-blue);
-    margin-bottom: -2px; /* Pull active item slightly down to meet the border */
+    color: #007bff;
 }
 
-/* Hide the active badge for desktop view */
 .active-badge {
-    display: none;
+    position: absolute;
+    bottom: -10px;
+    width: 100%;
+    height: 3px;
+    background-color: #007bff;
+    border-radius: 2px 2px 0 0;
 }
 
 
-/* --- Home Page Specific Styles --- */
+/* --- Main Content (Home Page) --- */
+.main-content {
+    min-height: 40vh;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+/* MISSION CARD STYLE */
 .mission-card {
-    background-color: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 0 auto;
+    /* Reverting to a solid blue similar to the Top Bar */
+    background-color: #007bff;
+    color: #fff; /* White text for contrast */
+    border: 1px solid #ffffff; /* Slightly darker border */
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Clearer shadow */
+    animation: none; /* Keep animation removed */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+.mission-card .section-title {
+    color: #fff !important; /* Force white text */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
 .mission-text {
-    font-size: 1.1rem;
-    color: var(--color-dark);
-    line-height: 1.8;
+    font-size: 1rem;
+    color: #e9ecef;
+    margin-top: 10px;
+    line-height: 1.5;
 }
 
 /* Achievements Grid */
 .achievements-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-lg);
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
 }
 
+/* ACHIEVEMENTS CARD STYLE UPDATED */
 .achievement-card {
-    background-color: var(--color-light-gray);
+    /* Similar color scheme to mission card, but inverted/lighter */
+    background: linear-gradient(135deg, #e9f7ff, #f8fbfd);
+    border: 1px solid #cce5ff; /* Light blue border */
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    width: calc(33.333% - 20px);
-    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Slightly softer shadow */
     text-align: left;
+    transition: transform 0.2s;
 }
 
 .achievement-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.achievement-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 .achievement-card img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
 .achievement-card h4 {
-    color: var(--color-dark-blue);
+    font-size: 1.1rem;
     margin-bottom: 5px;
+    color: #007bff;
+}
+
+.achievement-card p {
+    font-size: 0.9rem;
+    color: #6c757d;
 }
 
 .card-content {
-    padding: var(--spacing-md);
+    padding: 15px;
 }
 
-/* --- Wards Page Specific Styles --- */
+/* --- Wards Directory Page Styles --- */
 .wards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for mobile */
+    gap: 15px;
+    margin-top: 20px;
 }
 
 .ward-card {
-    background-color: var(--color-white);
+    background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: var(--spacing-md);
+    padding: 15px 10px;
     text-align: center;
+    transition: all 0.2s;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .ward-card:hover {
-    background-color: var(--color-light-gray);
+    background-color: #e9f7ff;
+    border-color: #007bff;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ward-icon {
-    width: 28px;
-    height: 28px;
-    color: var(--color-primary-blue);
+    width: 24px;
+    height: 24px;
+    color: #007bff;
     margin-bottom: 5px;
 }
 
 .ward-text {
-    font-size: 0.8rem;
-    color: var(--color-gray);
+    font-size: 0.7rem;
+    color: #6c757d;
+    margin-bottom: 2px;
 }
 
 .ward-number {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--color-dark);
+    color: #333;
 }
 
-/* --- Ward Details Modal (Overlay) --- */
+
+/* --- Ward Detail Modal & Tax Calculator Modal (Overlay) --- */
 .modal-overlay {
+    /* Ensures the modal is initially hidden and spans the whole viewport */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none; /* Controlled by JavaScript */
+    background-color: rgba(0, 0, 0, 0.6); /* Dark backdrop */
+    z-index: 100; /* High z-index */
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    padding: 20px;
 }
 
 .modal-content {
-    background-color: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: 8px;
-    max-width: 500px;
-    width: 90%;
-    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 95%;
+    max-width: 450px; /* Suitable max-width for phone-focused app */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     border-bottom: 1px solid #eee;
-    padding-bottom: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .modal-header h2 {
-    font-size: 1.5rem;
-    color: var(--color-dark-blue);
+    font-size: 1.2rem;
+    color: #007bff;
+    font-weight: 700;
 }
 
 .close-btn {
@@ -381,273 +415,330 @@ body.blur-content > .site-footer {
     border: none;
     font-size: 2rem;
     cursor: pointer;
-    color: var(--color-gray);
+    line-height: 1;
+    color: #6c757d;
 }
 
 .modal-body {
-    padding-top: var(--spacing-sm);
+    font-size: 1rem;
 }
 
-.ward-heading-label {
-    font-size: 1rem;
-    color: var(--color-primary-blue);
-    margin-top: var(--spacing-sm);
-    margin-bottom: 2px;
-    font-weight: 600;
+.modal-info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dotted #eee;
+    font-weight: 500;
+}
+
+.modal-info-item span:first-child {
+    color: #333;
+    font-weight: bold;
 }
 
 .modal-info-text {
-    font-size: 1.1rem;
-    margin-bottom: var(--spacing-sm);
+    color: #007bff;
+    font-weight: normal;
+    text-align: right;
+    max-width: 60%;
 }
 
 .modal-note {
-    font-size: 0.9rem;
-    color: var(--color-danger);
-    margin-top: var(--spacing-md);
-    padding: var(--spacing-sm);
-    border: 1px dashed var(--color-danger);
-    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f0f0f5;
+    border-radius: 5px;
+    color: #6c757d;
+}
+
+/* --- Tax Calculator Specific Styles --- */
+#tax-calculator-modal label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+#expenditure-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.calc-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #28a745; /* Green button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.calc-btn:hover {
+    background-color: #218838;
+}
+
+.tax-result {
     text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+    margin-top: 20px !important; 
+}
+
+.tax-result h4 {
+    font-size: 1rem;
+    color: #333;
+}
+
+.tax-result #tax-result-output {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #dc3545; /* Red for emphasis */
+    margin-top: 5px;
 }
 
 
-/* --- Full Screen Menu Modal (New) --- */
+/* --- Full Screen Menu Modal (Sidebar/Off-Canvas Design) --- */
 .menu-modal-overlay {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0; /* Position the menu container on the right */
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* Darker overlay for mobile/menu */
-    display: flex;
-    justify-content: flex-start; /* Menu slides in from the left */
-    z-index: 1001; /* Higher z-index than content modal */
-    
-    /* Start hidden off-screen */
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    background-color: transparent; /* Start transparent, will be darkened by 'is-active' */
+    z-index: 99;
+    padding: 0;
+    pointer-events: none; /* Disable interaction until active */
+    transition: background-color 0.3s ease-out;
 }
 
 .menu-modal-overlay.is-active {
-    visibility: visible;
-    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.4); /* Darken the background (backdrop) */
+    pointer-events: auto; /* Enable interaction with the overlay */
 }
 
 .menu-modal-content {
-    background-color: var(--color-white);
-    width: 300px; /* Width of the sliding panel */
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%; /* Takes 80% of screen width */
+    max-width: 300px; /* Max width for desktop/tablet */
     height: 100%;
-    padding: var(--spacing-lg) var(--spacing-md);
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
-    transform: translateX(-100%); /* Start off-screen */
-    transition: transform 0.3s ease;
+    background-color: #fff;
+    padding: 20px;
+    padding-top: 60px;
     overflow-y: auto;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    
+    /* Sliding animation */
+    transition: transform 0.3s ease-out;
+    transform: translateX(100%); /* Start off-screen (to the right) */
 }
 
 .menu-modal-overlay.is-active .menu-modal-content {
-    transform: translateX(0); /* Slide into view */
+    transform: translateX(0); /* Slide fully into view */
 }
 
 .menu-modal-close {
     position: absolute;
-    top: var(--spacing-md);
-    right: var(--spacing-md);
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
     font-size: 2.5rem;
     cursor: pointer;
-    color: var(--color-gray);
-    z-index: 10; /* Ensure the close button is clickable */
+    color: #333;
+    z-index: 101;
 }
 
 .menu-modal-heading {
     font-size: 1.8rem;
-    color: var(--color-dark-blue);
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-sm);
-    border-bottom: 2px solid var(--color-primary-blue);
+    color: #007bff;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #007bff;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
 .menu-modal-subheading {
-    font-size: 1.1rem;
-    color: var(--color-dark-blue);
-    margin-top: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
+    font-size: 1.2rem;
+    color: #333;
+    margin-top: 25px;
+    margin-bottom: 15px;
     font-weight: 600;
 }
 
 .menu-modal-item {
     display: block;
-    padding: 10px 0;
-    color: var(--color-dark);
-    text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    color: #333;
+    padding: 12px 0;
     border-bottom: 1px solid #eee;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.1s;
 }
 
 .menu-modal-item:hover {
-    color: var(--color-primary-blue);
-    background-color: var(--color-light-gray);
-    padding-left: 5px;
+    background-color: #f8f9fa;
+    text-decoration: none;
+    color: #007bff;
 }
 
 .menu-divider {
     height: 1px;
-    background-color: #ddd;
-    margin: var(--spacing-md) 0;
+    background-color: #ccc;
+    margin: 20px 0;
 }
 
 
-/* --- Footer Styles --- */
+/* --- Footer --- */
 .site-footer {
-    background-color: var(--color-dark);
-    color: var(--color-light-gray);
-    padding: var(--spacing-lg) 0 10px 0;
+    background-color: #343a40;
+    color: #f8f9fa;
+    padding: 30px 0 10px;
     font-size: 0.9rem;
 }
 
 .footer-grid {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-md);
-    border-bottom: 1px solid #444;
-}
-
-.footer-col {
-    flex: 1;
-    min-width: 250px;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .footer-heading {
     font-size: 1.1rem;
-    color: var(--color-white);
-    margin-bottom: var(--spacing-md);
-    border-left: 3px solid var(--color-primary-blue);
-    padding-left: 10px;
+    color: #007bff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #495057;
+    padding-bottom: 5px;
 }
 
 .contact-list .contact-item {
     display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
     align-items: flex-start;
-    margin-bottom: var(--spacing-sm);
+}
+
+.contact-list .contact-item .icon-blue {
+    color: #f8f9fa;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
 }
 
 .footer-links {
     list-style: none;
-    padding: 0;
 }
 
-.footer-links li {
-    margin-bottom: 5px;
+.footer-links li a {
+    color: #f8f9fa;
+    display: block;
+    padding: 5px 0;
 }
 
-.footer-links a {
-    color: var(--color-light-gray);
+.footer-links li a:hover {
+    color: #007bff;
     text-decoration: none;
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: var(--color-primary-blue);
-}
-
-.closed-notice {
-    color: var(--color-danger);
-    font-weight: 600;
-    margin-top: var(--spacing-sm);
 }
 
 .footer-bottom {
-    padding-top: var(--spacing-sm);
+    border-top: 1px solid #495057;
+    padding-top: 10px;
     text-align: center;
 }
 
-/* --- Media Queries (Mobile Responsiveness) --- */
-@media (max-width: 992px) {
-    .top-center {
-        display: none; /* Hide emergency numbers on tablet/mobile top bar */
-    }
-    .branding-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: var(--spacing-sm);
-    }
-    .search-section {
-        justify-content: flex-start;
-        width: 100%;
-    }
-    .search-box {
-        width: 100%;
-    }
-    .icon-nav-inner {
-        justify-content: space-around;
-        gap: 0;
-    }
-    .nav-item {
-        padding: 10px 5px;
-        flex: 1; /* Make navigation items equally wide */
-        font-size: 0.9rem;
-    }
-    .nav-item i {
-        width: 20px;
-        height: 20px;
-    }
-    .nav-item.active {
-        border-bottom: 2px solid var(--color-primary-blue);
-        margin-bottom: 0;
-    }
-    .achievement-card {
-        width: 100%;
-    }
-    .footer-grid {
-        flex-direction: column;
-        text-align: center;
-    }
-    .footer-col {
-        min-width: 100%;
-    }
-    .footer-heading {
-        border-left: none;
-        padding-left: 0;
-        border-bottom: 1px solid #444;
-        padding-bottom: 5px;
-    }
-    .contact-list .contact-item {
-        justify-content: center;
-    }
+.footer-bottom div {
+    margin-top: 5px;
 }
 
-@media (max-width: 576px) {
-    .logo-section {
-        flex-direction: column;
-        text-align: center;
+/* --- Media Queries for Tablet/Desktop (>= 768px) --- */
+@media (min-width: 768px) {
+    /* Top Bar */
+    .top-bar-inner {
+        padding: 0 50px; /* More padding for wider screens */
     }
-    .logo-circle {
-        margin-right: 0;
-        margin-bottom: var(--spacing-sm);
+
+    .top-left, .top-center {
+        display: flex;
+        gap: 15px;
     }
+
+    .emergency-item {
+        margin-left: 10px;
+        color: #fff;
+    }
+    
+    .lang-selector-group {
+        margin-left: 0; /* Keep it on the right side */
+    }
+
+    /* Header */
+    .branding-inner {
+        flex-wrap: nowrap;
+        padding: 0 50px;
+    }
+    
+    .search-section {
+        width: 300px;
+        margin-top: 0;
+    }
+    
     .org-name h1 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
+
     .org-name h2 {
         font-size: 0.9rem;
     }
-    .section-title {
-        font-size: 1.5rem;
+    
+    /* Navigation */
+    .icon-nav-inner {
+        padding: 10px 50px;
     }
-    .section-subtitle {
-        font-size: 1rem;
+
+    .nav-item {
+        flex-basis: auto;
+        padding: 5px 20px;
     }
+
+    /* Content */
+    .section-padding { padding: 50px 0; }
+    
+    .achievements-grid {
+        flex-direction: row;
+        gap: 30px;
+    }
+    
+    .achievement-card {
+        flex: 1;
+    }
+    
+    /* Wards Grid */
     .wards-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(5, 1fr); /* 5 columns for desktop */
     }
-    .modal-content {
-        padding: var(--spacing-md);
+
+    /* Footer */
+    .footer-content {
+        padding: 0 50px;
+    }
+    
+    .footer-grid {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .footer-col {
+        flex: 1;
+        min-width: 200px;
     }
 }
